@@ -14,6 +14,7 @@
 #include "themedark.h"
 #include "resources.h"
 #include "numberimputscreen.h"
+#include "checkscreen.h"
 //#include "themelight.h"
 
 void marlinUiInit(void);
@@ -390,6 +391,15 @@ void MarlinUi::showNumberInputScreen()
         LV_LOG_INFO("m_numberImputScreen not init");
 }
 
+void MarlinUi::showCheckScreen()
+{
+    //加载消息提示界面
+    if(m_checkScreen)
+        m_checkScreen->show();
+    else
+        LV_LOG_INFO("m_checkScreen not init");
+}
+
 uint16_t MarlinUi::width() const
 {
     //printf("Size %d %d",m_width,m_height);
@@ -439,8 +449,13 @@ FileScreen *MarlinUi::fileScreen(){ return m_fileScreen; }
 void MarlinUi::initScreens()
 {
     //NOTE: 必须首先设置好字体
+#if SCREEN_SIZE==28
     lv_font_add(&microsoft_yahei_chinese_16,&microsoft_yahei_ascii_16);
     lv_font_add(&microsoft_yahei_symbol_16,&microsoft_yahei_ascii_16);
+#elif SCREEN_SIZE==35
+    lv_font_add(&microsoft_yahei_chinese_20,&microsoft_yahei_ascii_20);
+    lv_font_add(&microsoft_yahei_symbol_20,&microsoft_yahei_ascii_20);
+#endif
 
     //初始化界面语言
     LangChinese::initLang();
@@ -465,6 +480,8 @@ void MarlinUi::initScreens()
     m_motionScreen = new MotionScreen();
     m_extrudeScreen = new ExtrudeScreen();
     m_fileScreen = new FileScreen();
+
+    m_checkScreen = new CheckScreen();
 
     m_messageScreen = new MessageScreen();
     m_numberImputScreen = new NumberImputScreen();
@@ -533,5 +550,12 @@ void MarlinUi::initTasks()
 lv_res_t onButBackHomeClicked (struct _lv_obj_t * obj)
 {
     MarlinUi::getInstance()->showHomeScreen();
+    return LV_RES_OK;
+}
+
+//返回菜单界面
+lv_res_t onButBackMenuClicked (struct _lv_obj_t * obj)
+{
+    MarlinUi::getInstance()->showMenuScreen();
     return LV_RES_OK;
 }

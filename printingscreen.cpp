@@ -78,7 +78,6 @@ void PrintingScreen::setPrintintProcess(uint16_t value)
             m_labProcess->setHidden(false);
         }
     }
-
     count ++;
 }
 
@@ -699,7 +698,7 @@ bool PrintingScreen::initScreen()
         m_labSpeed->setText(tempStr);
 
         //更新时间
-        setPrintingElapsedTime(isRemotePrinting() ? 0 : ExtUI::getProgress_seconds_elapsed());
+        setPrintingElapsedTime(isRemotePrinting() ? 0 : isPrintingFinished() ? 0 : ExtUI::getProgress_seconds_elapsed());
 
         //更新进度
         setPrintintProcess( isRemotePrinting() ? 0 : isPrintingFinished() ? 100 :  ExtUI::getProgress_percent());

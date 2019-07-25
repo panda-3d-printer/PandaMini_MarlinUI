@@ -250,6 +250,8 @@ public:
     static void showMessageBox(const char * mesg , const char ** buts ,
                                lv_btnm_action_t action , int32_t period = -1);
 
+    static void messageBoxHide(){ messageBox()->setHidden(true); }
+
 protected:
 
     /**

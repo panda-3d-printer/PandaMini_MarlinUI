@@ -4,6 +4,9 @@ INCLUDEPATH += $$PWD \
 DEFINES += FULL_CHINESE_FONT
 
 HEADERS +=  \
+    $$PWD/Levelingscreen.h \
+    $$PWD/checkscreen.h \
+    $$PWD/extuiextend.h \
     $$PWD/marlinui.h \
     $$PWD/motionunit.h \
     $$PWD/screen.h \
@@ -30,15 +33,17 @@ HEADERS +=  \
 
 SOURCES += \
 #    $$PWD/extensible_ui/ui_api.cpp \
+    $$PWD/checkscreen.cpp \
+    $$PWD/extuiextend.cpp \
+    $$PWD/levelingscreen.cpp \
     $$PWD/marlinui.cpp \
     $$PWD/homescreen.cpp \
     $$PWD/screen.cpp \
     $$PWD/screentask.cpp \
     $$PWD/splashscreen.cpp \
-    $$PWD/extensible_ui/lib/example.cpp \
+#    $$PWD/extensible_ui/lib/example.cpp \
     $$PWD/event.cpp \
     $$PWD/multilang.cpp \
-    $$PWD/test_red_flower.c \
     $$PWD/resources.c \
     $$PWD/menuscreen.cpp \
     $$PWD/printingscreen.cpp \

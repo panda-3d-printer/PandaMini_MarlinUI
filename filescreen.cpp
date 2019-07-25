@@ -621,7 +621,7 @@ bool FileScreen::beforeShow()
         //if(!ExtUI::isMediaInserted())
         if(!keepViewer())
         {
-            #ifdef SDSUPPORT
+            #if !PIN_EXISTS(SD_DETECT)
             card.initsd();
             #endif
         }

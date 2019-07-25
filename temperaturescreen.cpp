@@ -126,6 +126,7 @@ bool TemperatureScreen::initScreen()
     int16_t screenHeight = this->height();
     int16_t screendpi = this->dpi();
 
+#if SCREEN_SIZE ==28
     int16_t safeMargin = 6;
     int16_t spacing = 6;
     int16_t titleBarHeight = 32;
@@ -139,6 +140,25 @@ bool TemperatureScreen::initScreen()
 
     int16_t fontSize = 16;
     int16_t iconSize = 24;
+
+    int16_t scaleSpacing = 3;
+#elif SCREEN_SIZE ==35
+    int16_t safeMargin = 7;
+    int16_t spacing = 7;
+    int16_t titleBarHeight = 38;
+    int16_t stateBarHeight = 32;
+
+    int16_t butWidth = 70;
+    int16_t butHeight = 70;
+
+    int16_t chartWidth = 300;
+    int16_t chartHeight = 190;
+
+    int16_t fontSize = 20;
+    int16_t iconSize = 28;
+
+    int16_t scaleSpacing = 4;
+#endif
 
     LVObject * reference = nullptr; //布局参考对象
 
@@ -199,8 +219,8 @@ bool TemperatureScreen::initScreen()
     //温度图表刻度
     styleScale = &lv_style_plain;
     styleScale->text.color = LV_COLOR_WHITE;
-    styleScale->text.line_space = 3;
-    //styleScale->text.font = &lv_font_dejavu_10;
+    styleScale->text.line_space = scaleSpacing;
+    //styleScale->text.font = &lv_font_dejavu_20;
 
     LVLabel * labScale = new LVLabel(butArea,nullptr);
     labScale->setWidth(24);

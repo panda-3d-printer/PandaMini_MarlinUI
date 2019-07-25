@@ -157,10 +157,10 @@ void Screen::installMemoryDebuger(Screen *screen)
         barMem->setHeight(2);
         barMem->align(LV_ALIGN_IN_TOP_LEFT);
 
-        //提示内存使用情况
-        char tempStr[16];
-        sprintf(tempStr,"Use:%dByte",screen->m_memoryUsed);
-        showBubble(tempStr,1000);
+        //提示内存使用情况,检查内存泄露
+        //char tempStr[16];
+        //sprintf(tempStr,"Use:%dByte",screen->m_memoryUsed);
+        //showBubble(tempStr,1000);
     }
 }
 

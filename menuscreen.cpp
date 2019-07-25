@@ -1,4 +1,4 @@
-#include "menuscreen.h"
+﻿#include "menuscreen.h"
 #include "marlinui.h"
 #include "resources.h"
 #include "multilang.h"
@@ -11,6 +11,17 @@
 MenuScreen::MenuScreen()
 {
 
+}
+
+lv_res_t closePowerMesgBox(lv_obj_t * btnm, const char *txt)
+{
+    if(!strcmp(txt,"Yes"))
+    {
+           ExtUI::enqueueCommands_P("M81 /n");
+    }
+    //lv_obj_set_hidden(btnm,true);
+    Screen::messageBoxHide();
+    return LV_RES_OK;
 }
 
 bool MenuScreen::initScreen()
@@ -187,6 +198,10 @@ bool MenuScreen::initScreen()
         butCheck->align(reference,LV_ALIGN_OUT_RIGHT_TOP,spacing,0);
         butCheck->setStyle(LV_BTN_STYLE_PR,styleButPr);
         butCheck->setStyle(LV_BTN_STYLE_REL,styleButRel);
+        butCheck->setAction([](struct _lv_obj_t * obj)->lv_res_t
+        {
+            MarlinUi::getInstance()->showCheckScreen();
+        },LV_BTN_ACTION_CLICK);
         LVImage * imgCheck = new LVImage(butCheck,nullptr);
         imgCheck->setSrc(&check_24);
         imgCheck->align(LV_ALIGN_CENTER);
@@ -219,6 +234,13 @@ bool MenuScreen::initScreen()
         butShutdown->align(reference,LV_ALIGN_OUT_RIGHT_TOP,spacing,0);
         butShutdown->setStyle(LV_BTN_STYLE_PR,styleButPr);
         butShutdown->setStyle(LV_BTN_STYLE_REL,styleButRel);
+        butShutdown->setAction([](struct _lv_obj_t * obj)->lv_res_t
+        {
+            //关闭打印机电源
+            static const char * closePowerbuts[] = {"Yes","No",""};
+            showMessageBox("确认关闭电源?",closePowerbuts,closePowerMesgBox);
+            return LV_RES_OK;
+        },LV_BTN_ACTION_CLICK);
         LVImage * imgShutdown = new LVImage(butShutdown,nullptr);
         imgShutdown->setSrc(&shutdown_24);
         imgShutdown->align(LV_ALIGN_CENTER);

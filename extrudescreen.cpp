@@ -197,6 +197,8 @@ bool ExtrudeScreen::initScreen()
 
     const int16_t butAreaMargin = 10;
 
+    const int16_t butLoadSize = 75;
+
     const int16_t arcWidrh = 20;
     const int16_t arcSize = 160;
 
@@ -395,28 +397,30 @@ bool ExtrudeScreen::initScreen()
         labEPos->setStyle(styleArcRed);
 
         LVButton * butUnload = new LVButton(butArea,nullptr);
-        butUnload->setSize(butMoveWidth,butMoveWidth);
+        butUnload->setSize(butLoadSize,butLoadSize);
         butUnload->align(LV_ALIGN_IN_TOP_RIGHT,-spacing*2,spacing);
         butUnload->setStyle(LV_BTN_STYLE_PR,THEME_STYLE_GET(Theme_Screen_ButtonPr));
         butUnload->setStyle(LV_BTN_STYLE_REL,THEME_STYLE_GET(Theme_Screen_ButtonRel));
         butUnload->setAction([this](struct _lv_obj_t * obj)->lv_res_t{
-            //TODO:实现耗材卸载
+            //耗材卸载
+            ExtUI::enqueueCommands_P("M702 \n");
         },LV_BTN_ACTION_CLICK);
         LVImage * imgUnload = new LVImage(butUnload,nullptr);
-        //imgUnload->setSrc();
+        imgUnload->setSrc(&loadFilament_24);
         LVLabel * labUnload = new LVLabel(butUnload,nullptr);
         labUnload->setText("Unload");
 
         LVButton * butLoad = new LVButton(butArea,nullptr);
-        butLoad->setSize(butMoveWidth,butMoveWidth);
+        butLoad->setSize(butLoadSize,butLoadSize);
         butLoad->align(LV_ALIGN_IN_BOTTOM_RIGHT,-spacing*2,-spacing);
         butLoad->setStyle(LV_BTN_STYLE_PR,THEME_STYLE_GET(Theme_Screen_ButtonPr));
         butLoad->setStyle(LV_BTN_STYLE_REL,THEME_STYLE_GET(Theme_Screen_ButtonRel));
         butLoad->setAction([this](struct _lv_obj_t * obj)->lv_res_t{
-            //TODO:实现耗材加载
+            //耗材加载
+            ExtUI::enqueueCommands_P("M701 \n");
         },LV_BTN_ACTION_CLICK);
         LVImage * imgLoad = new LVImage(butLoad,nullptr);
-        //imgUnload->setSrc();
+        imgLoad->setSrc(&loadFilament_24);
         LVLabel * labLoad = new LVLabel(butLoad,nullptr);
         labLoad->setText("Load");
 

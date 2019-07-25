@@ -12,8 +12,9 @@ class LVImage;
 /**
  * @brief 挤出控制界面
  *
- * TODO:添加冷挤出保护开关
+ * TODO: 添加冷挤出保护开关
  * TODO: 设置运动速度
+ * TODO: 实现运动单位输入
  */
 class ExtrudeScreen : public Screen
 {

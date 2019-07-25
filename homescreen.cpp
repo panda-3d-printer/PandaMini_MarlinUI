@@ -94,6 +94,7 @@ bool HomeScreen::initScreen()
     int screenDpi = this->dpi();
 
     //计算出各区域大小
+#if SCREEN_SIZE == 28
     int16_t safeMargin = 6;
     int16_t spacing = 4;
     int16_t barHeight = 26;
@@ -106,6 +107,21 @@ bool HomeScreen::initScreen()
 
     int16_t fontSize = 16;
     int16_t iconSize = 24;
+#elif SCREEN_SIZE == 35
+    // scale 120%
+    int16_t safeMargin = 7;
+    int16_t spacing = 5;
+    int16_t barHeight = 32;
+
+    int16_t butAreaWidth = screenWidth;
+    int16_t butAreaHeight = screenHeight - barHeight;
+
+    int16_t butWidth = 152;
+    int16_t butHeight = 138;
+
+    int16_t fontSize = 20;
+    int16_t iconSize = 28;
+#endif
 
     //主界面按钮区域
     {

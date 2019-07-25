@@ -25,6 +25,7 @@ class FileScreen;
 class MessageScreen;
 class NumberImputScreen;
 class KilledScreen;
+class CheckScreen;
 
 
 //class Margin
@@ -72,6 +73,8 @@ struct MesgParam
 ///////  一些常用的按钮函数  ////////////////////////////////////////
 //返回主界面
 lv_res_t onButBackHomeClicked (struct _lv_obj_t * obj);
+//返回菜单界面
+lv_res_t onButBackMenuClicked (struct _lv_obj_t * obj);
 
 
 /**
@@ -122,6 +125,7 @@ protected:
     FileScreen * m_fileScreen = nullptr;        //!< 文件浏览界面 [file]
 
     MenuScreen * m_menuScreen = nullptr;    //!< 菜单界面 [menu]
+    CheckScreen * m_checkScreen = nullptr;  //!< 检查界面[check]
     PrintingScreen * m_printingScreen = nullptr;   //!< 打印界面 [printing]
 
     MessageScreen * m_messageScreen = nullptr; //!< 信息确认界面 [message]
@@ -228,7 +232,12 @@ public:
      */
     void showMessageScreen();
 
+    /**
+     * @brief 显示数字输入界面
+     */
     void showNumberInputScreen();
+
+    void showCheckScreen();
 
     uint16_t width() const;
     void setWidth(uint16_t width);

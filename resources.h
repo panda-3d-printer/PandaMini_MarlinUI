@@ -3,6 +3,8 @@
 
 //定义或者声明一些全局资源
 
+
+
 ////////////////// 图片数据  ///////////////////////////////////////
 #include <lvgl/lv_objx/lv_img.h>
 
@@ -78,6 +80,8 @@ LV_IMG_DECLARE(yPosArc_107_34)
 LV_IMG_DECLARE(yNegArc_107_34)
 LV_IMG_DECLARE(zPosArc_82_27)
 LV_IMG_DECLARE(zNegArc_82_27)
+
+LV_IMG_DECLARE(loadFilament_24)
 
 #define TEST_BLUE_FLOWER "P:/blue_flower_16.bin"
 
